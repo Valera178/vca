@@ -1,0 +1,3 @@
+## 2024-05-24 - [Add ARIA labels to StudentCabinet components]
+**Learning:** Adding ARIA labels to buttons containing only icons (like the send message and task completion toggles) ensures screen readers can identify the button's purpose correctly, significantly improving keyboard and assistive technology accessibility.
+**Action:** Always check icon-only buttons for `aria-label` and `title` attributes when creating or updating UI components, especially in complex interfaces like the Student Cabinet.

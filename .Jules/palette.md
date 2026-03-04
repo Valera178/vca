@@ -1,0 +1,3 @@
+## 2024-05-15 - [Screen Reader Feedback on Custom Interactive Elements]
+**Learning:** Found that custom interactive elements utilizing icons often omit necessary `aria-label`s, rendering them inaccessible to screen reader users who cannot determine the button's action without reading surrounding content context. Also, state changes (like "completed" vs "incomplete") must be communicated via `aria-pressed` or dynamically changing `aria-label`s.
+**Action:** Consistently verify and implement `aria-label`s, especially on icon-only buttons (like task completion toggles and send message buttons), to ensure screen reader users receive clear, actionable context for each interaction.

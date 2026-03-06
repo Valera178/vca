@@ -104,7 +104,10 @@ export const StudentCabinet: React.FC = () => {
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                            <button
+                              aria-label={task.completed ? "Отметить как невыполненное" : "Отметить как выполненное"}
+                              className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}
+                            >
                                {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
                             </button>
                             <div className="flex-1">
@@ -183,6 +186,7 @@ export const StudentCabinet: React.FC = () => {
                          />
                          <button
                             type="submit"
+                            aria-label="Отправить сообщение"
                             disabled={!chatMessage.trim()}
                             className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md"
                          >

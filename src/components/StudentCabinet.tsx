@@ -20,6 +20,7 @@ const mockTasks: Task[] = [
 export const StudentCabinet: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>(mockTasks);
   const [chatMessage, setChatMessage] = useState('');
+  const [isTyping, setIsTyping] = useState(false);
   const [messages, setMessages] = useState<{ id: number; text: string; isAi: boolean }[]>([
     { id: 1, text: 'Привет! Я твой ИИ-ассистент. Готов помочь разобрать позиции или обсудить теорию.', isAi: true }
   ]);
@@ -30,11 +31,12 @@ export const StudentCabinet: React.FC = () => {
 
   const handleSendMessage = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!chatMessage.trim()) return;
+    if (!chatMessage.trim() || isTyping) return;
 
     const newMsg = { id: Date.now(), text: chatMessage, isAi: false };
     setMessages(prev => [...prev, newMsg]);
     setChatMessage('');
+    setIsTyping(true);
 
     // Mock AI response
     setTimeout(() => {
@@ -43,6 +45,7 @@ export const StudentCabinet: React.FC = () => {
         text: 'Отличный вопрос! Подумай, как изменение пешечной структуры на ферзевом фланге повлияет на безопасность черного короля. Какие слабые поля образуются?',
         isAi: true
       }]);
+      setIsTyping(false);
     }, 1500);
   };
 
@@ -170,6 +173,34 @@ export const StudentCabinet: React.FC = () => {
                             </div>
                          </motion.div>
                       ))}
+                      {isTyping && (
+                         <motion.div
+                            initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                            animate={{ opacity: 1, y: 0, scale: 1 }}
+                            className="flex gap-4 flex-row"
+                         >
+                            <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400 shrink-0 mt-1">
+                               <Sparkles size={16} />
+                            </div>
+                            <div className="p-4 rounded-2xl max-w-[85%] bg-slate-800/80 text-slate-200 rounded-tl-sm border border-white/10 backdrop-blur-md flex items-center gap-1 shadow-lg h-[54px]">
+                               <motion.span
+                                 animate={{ opacity: [0.4, 1, 0.4] }}
+                                 transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
+                                 className="w-2 h-2 bg-purple-400 rounded-full inline-block"
+                               />
+                               <motion.span
+                                 animate={{ opacity: [0.4, 1, 0.4] }}
+                                 transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut", delay: 0.2 }}
+                                 className="w-2 h-2 bg-purple-400 rounded-full inline-block mx-1"
+                               />
+                               <motion.span
+                                 animate={{ opacity: [0.4, 1, 0.4] }}
+                                 transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut", delay: 0.4 }}
+                                 className="w-2 h-2 bg-purple-400 rounded-full inline-block"
+                               />
+                            </div>
+                         </motion.div>
+                      )}
                    </div>
 
                    <div className="p-4 border-t border-white/10 bg-black/20 shrink-0 z-10 backdrop-blur-md">
@@ -180,13 +211,16 @@ export const StudentCabinet: React.FC = () => {
                             onChange={(e) => setChatMessage(e.target.value)}
                             placeholder="Спроси о позиции или правиле..."
                             className="flex-1 bg-white/5 border border-white/10 rounded-2xl pl-5 pr-12 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
+                            disabled={isTyping}
+                            aria-label="Текст сообщения"
                          />
                          <button
                             type="submit"
-                            disabled={!chatMessage.trim()}
+                            disabled={!chatMessage.trim() || isTyping}
                             className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md"
+                            aria-label="Отправить сообщение"
                          >
-                            <Send size={18} className={chatMessage.trim() ? "translate-x-[-1px] translate-y-[1px]" : ""} />
+                            <Send size={18} className={chatMessage.trim() && !isTyping ? "translate-x-[-1px] translate-y-[1px]" : ""} />
                          </button>
                       </form>
                    </div>

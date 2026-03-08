@@ -104,7 +104,10 @@ export const StudentCabinet: React.FC = () => {
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                            <button
+                               aria-label={task.completed ? "Отметить как невыполненное" : "Отметить как выполненное"}
+                               className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}
+                            >
                                {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
                             </button>
                             <div className="flex-1">
@@ -179,11 +182,13 @@ export const StudentCabinet: React.FC = () => {
                             value={chatMessage}
                             onChange={(e) => setChatMessage(e.target.value)}
                             placeholder="Спроси о позиции или правиле..."
+                            aria-label="Сообщение в чат"
                             className="flex-1 bg-white/5 border border-white/10 rounded-2xl pl-5 pr-12 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                          />
                          <button
                             type="submit"
                             disabled={!chatMessage.trim()}
+                            aria-label="Отправить сообщение"
                             className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md"
                          >
                             <Send size={18} className={chatMessage.trim() ? "translate-x-[-1px] translate-y-[1px]" : ""} />

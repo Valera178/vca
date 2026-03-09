@@ -1,0 +1,3 @@
+## 2024-03-09 - Inaccessible Accordion Headers
+**Learning:** Found a pattern where interactive accordion headers were implemented as `div` elements with `onClick` handlers (`src/components/Syllabus.tsx`). This breaks keyboard navigation (tabbing) and fails to properly announce the interactive state to screen readers.
+**Action:** Ensure all custom interactive elements, such as accordions and collapsible sections, use native `<button>` tags with appropriate `aria-expanded` and `aria-controls` attributes, along with visible focus states (`focus-visible:ring-2`).

@@ -93,19 +93,24 @@ export const StudentCabinet: React.FC = () => {
                       </span>
                    </div>
 
-                   <div className="space-y-4">
+                   <div className="space-y-4" role="list">
                       {tasks.map(task => (
                          <div
                            key={task.id}
-                           onClick={() => toggleTask(task.id)}
-                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer ${
+                           role="listitem"
+                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all ${
                               task.completed
                                  ? 'bg-emerald-500/5 border-emerald-500/20 opacity-70 hover:opacity-100'
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
-                               {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
+                            <button
+                               onClick={() => toggleTask(task.id)}
+                               aria-label={`Отметить "${task.title}" как ${task.completed ? 'невыполненное' : 'выполненное'}`}
+                               aria-pressed={task.completed}
+                               className={`mt-0.5 shrink-0 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-full ${task.completed ? 'text-emerald-500' : 'text-slate-500 hover:text-emerald-400'}`}
+                            >
+                               {task.completed ? <CheckCircle2 size={22} aria-hidden="true" /> : <Circle size={22} aria-hidden="true" />}
                             </button>
                             <div className="flex-1">
                                <h3 className={`font-medium transition-colors ${task.completed ? 'text-slate-400 line-through' : 'text-slate-200 group-hover:text-white'}`}>
@@ -114,9 +119,9 @@ export const StudentCabinet: React.FC = () => {
                                {task.fen && !task.completed && (
                                   <div className="mt-3 bg-black/40 rounded-lg p-3 border border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
                                      <span className="text-xs font-mono text-slate-400 truncate max-w-[150px]">{task.fen}</span>
-                                     <button className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1">
+                                     <button className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500">
                                         Решить
-                                        <ChevronRight size={14} />
+                                        <ChevronRight size={14} aria-hidden="true" />
                                      </button>
                                   </div>
                                )}
@@ -179,14 +184,16 @@ export const StudentCabinet: React.FC = () => {
                             value={chatMessage}
                             onChange={(e) => setChatMessage(e.target.value)}
                             placeholder="Спроси о позиции или правиле..."
+                            aria-label="Сообщение для ИИ-ассистента"
                             className="flex-1 bg-white/5 border border-white/10 rounded-2xl pl-5 pr-12 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-purple-500 focus:ring-1 focus:ring-purple-500 transition-all"
                          />
                          <button
                             type="submit"
                             disabled={!chatMessage.trim()}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md"
+                            aria-label="Отправить сообщение"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0f172a]"
                          >
-                            <Send size={18} className={chatMessage.trim() ? "translate-x-[-1px] translate-y-[1px]" : ""} />
+                            <Send size={18} aria-hidden="true" className={chatMessage.trim() ? "translate-x-[-1px] translate-y-[1px]" : ""} />
                          </button>
                       </form>
                    </div>

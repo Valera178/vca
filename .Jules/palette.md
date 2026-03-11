@@ -1,0 +1,3 @@
+## 2024-05-18 - Nested Interactive Elements in Container `div`s
+**Learning:** Using `onClick` on a container `div` that also contains nested interactive elements (like another `<button>` inside it) creates an inaccessible experience for screen reader users and causes event bubbling bugs (e.g. clicking a nested "Решить" button also toggles the entire task completion state).
+**Action:** Always avoid `onClick` on generic containers. Use a semantic `<button>` wrapped strictly around the content meant to trigger the action, and use classes like `focus-within:ring-2` on the container to maintain a visual focus state for the entire area. Add proper `aria-label` and `aria-pressed` to interactive toggles.

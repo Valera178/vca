@@ -97,30 +97,37 @@ export const StudentCabinet: React.FC = () => {
                       {tasks.map(task => (
                          <div
                            key={task.id}
-                           onClick={() => toggleTask(task.id)}
-                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer ${
+                           className={`group p-4 rounded-xl border transition-all ${
                               task.completed
                                  ? 'bg-emerald-500/5 border-emerald-500/20 opacity-70 hover:opacity-100'
-                                 : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
+                                 : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30 focus-within:ring-2 focus-within:ring-emerald-500/50'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
-                               {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
-                            </button>
-                            <div className="flex-1">
-                               <h3 className={`font-medium transition-colors ${task.completed ? 'text-slate-400 line-through' : 'text-slate-200 group-hover:text-white'}`}>
+                            <button
+                               onClick={() => toggleTask(task.id)}
+                               aria-label={task.completed ? `Отметить "${task.title}" как невыполненное` : `Отметить "${task.title}" как выполненное`}
+                               aria-pressed={task.completed}
+                               className="flex items-start gap-4 w-full text-left focus:outline-none"
+                            >
+                               <div className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                                  {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
+                               </div>
+                               <h3 className={`font-medium transition-colors flex-1 ${task.completed ? 'text-slate-400 line-through' : 'text-slate-200 group-hover:text-white'}`}>
                                   {task.title}
                                </h3>
-                               {task.fen && !task.completed && (
-                                  <div className="mt-3 bg-black/40 rounded-lg p-3 border border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
-                                     <span className="text-xs font-mono text-slate-400 truncate max-w-[150px]">{task.fen}</span>
-                                     <button className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1">
-                                        Решить
-                                        <ChevronRight size={14} />
-                                     </button>
-                                  </div>
-                               )}
-                            </div>
+                            </button>
+                            {task.fen && !task.completed && (
+                               <div className="mt-3 ml-[38px] bg-black/40 rounded-lg p-3 border border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
+                                  <span className="text-xs font-mono text-slate-400 truncate max-w-[150px]" aria-hidden="true">{task.fen}</span>
+                                  <button
+                                     aria-label={`Решить задачу: ${task.title}`}
+                                     className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-1 focus-visible:ring-offset-black/40"
+                                  >
+                                     Решить
+                                     <ChevronRight size={14} aria-hidden="true" />
+                                  </button>
+                               </div>
+                            )}
                          </div>
                       ))}
                    </div>

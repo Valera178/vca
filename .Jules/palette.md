@@ -1,0 +1,3 @@
+## 2024-05-19 - Avoid onClick on container divs with interactive children
+**Learning:** Attaching `onClick` handlers to container `div` elements that have nested interactive elements (like a "Solve" button) causes event bubbling bugs (clicking the nested button triggers the container's action unintentionally) and creates accessibility issues where screen readers might not announce the action properly or users cannot tab to the primary toggle action effectively.
+**Action:** Move interactive actions to semantic elements like `<button>` and place them inside the container, removing `onClick` from the `div`. Ensure to add `aria-label` (in Russian, e.g., "Отметить как выполненное"), `aria-pressed`, and proper keyboard focus states (`focus-visible`).

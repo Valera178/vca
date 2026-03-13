@@ -97,14 +97,21 @@ export const StudentCabinet: React.FC = () => {
                       {tasks.map(task => (
                          <div
                            key={task.id}
-                           onClick={() => toggleTask(task.id)}
-                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer ${
+                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all ${
                               task.completed
                                  ? 'bg-emerald-500/5 border-emerald-500/20 opacity-70 hover:opacity-100'
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                            <button
+                               onClick={() => toggleTask(task.id)}
+                               role="checkbox"
+                               aria-checked={task.completed}
+                               aria-label={task.completed ? "Отметить как невыполненное" : "Отметить как выполненное"}
+                               className={`mt-0.5 shrink-0 transition-colors focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:outline-none rounded-full ${
+                                  task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'
+                               }`}
+                            >
                                {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
                             </button>
                             <div className="flex-1">

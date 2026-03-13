@@ -1,0 +1,3 @@
+## 2024-05-14 - Prevent Event Bubbling on Container Elements
+**Learning:** Attaching `onClick` handlers to container `div`s that house nested interactive elements (like buttons or links) can lead to unintended event bubbling bugs where clicking inner actions accidentally triggers the container's action. This also creates a poor screen reader experience as the entire `div` is treated as interactive without proper semantics.
+**Action:** Always place `onClick` handlers directly on the semantic element (like `<button>`) responsible for the action. Ensure proper ARIA attributes (e.g., `role="checkbox"`, `aria-checked`, `aria-label`) and `focus-visible` styles are added to the semantic element for accessibility and keyboard navigation.

@@ -81,7 +81,7 @@ export const DynamicIsland: React.FC<DynamicIslandProps> = ({ onLoginClick, isLo
            <button
               onClick={() => setExpanded(!expanded)}
               aria-expanded={expanded}
-              aria-label={expanded ? "Close menu" : "Open menu"}
+              aria-label={expanded ? "Закрыть меню" : "Открыть меню"}
               className="text-slate-300 hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-md p-1"
            >
              {expanded ? <X size={20} /> : <Menu size={20} />}

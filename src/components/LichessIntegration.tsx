@@ -60,6 +60,7 @@ export const LichessIntegration: React.FC = () => {
                    value={url}
                    onChange={(e) => setUrl(e.target.value)}
                    placeholder="https://lichess.org/..."
+                   aria-label="Ссылка на партию Lichess"
                    className="w-full bg-black/30 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 transition-all font-medium text-lg shadow-inner"
                  />
                </div>

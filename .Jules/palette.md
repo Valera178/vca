@@ -1,0 +1,3 @@
+## 2024-05-15 - Event Bubbling on Interactive Containers
+**Learning:** Attaching `onClick` to a container `div` that has nested interactive elements (like the "Решить" button in `StudentCabinet`) causes event bubbling issues where interacting with the nested button unintendedly triggers the container's action. This is both a functional bug and an accessibility issue.
+**Action:** Always attach `onClick` handlers directly to semantic, focused `<button>` elements representing the specific action instead of wrapper `div`s, and ensure they have appropriate ARIA labels and focus states.

@@ -1,0 +1,3 @@
+## 2024-05-24 - Event Bubbling and Accessibility in Task Lists
+**Learning:** Found an accessibility and interaction issue where `onClick` handlers attached to container `div`s with nested interactive elements (like the task toggle button or other nested buttons) cause event bubbling bugs and obscure keyboard focus states. Clicking an inner element would inadvertently trigger the container's action.
+**Action:** Always attach interactive actions to semantic elements like `<button>`, remove `onClick` and `cursor-pointer` from container `div`s, and ensure nested buttons have explicit `aria-label`s and `focus-visible` styles for clear keyboard navigation.

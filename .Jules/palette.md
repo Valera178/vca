@@ -1,0 +1,3 @@
+## 2025-03-18 - Accessibility issue with nested interactive elements
+**Learning:** Container `div`s with `onClick` handlers that contain nested interactive elements (like `<button>`) cause severe accessibility problems and unexpected event bubbling bugs. Additionally, for non-English user interfaces, ARIA labels must be translated to the UI's primary language to be genuinely useful for screen reader users.
+**Action:** Always place interactive actions on semantic elements like `<button>` instead of container `div`s. Ensure nested interactive elements are avoided. Include appropriate, translated ARIA labels for icon-only buttons.

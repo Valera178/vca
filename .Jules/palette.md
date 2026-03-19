@@ -1,0 +1,3 @@
+## 2024-05-18 - Avoid Event Bubbling Bugs in Interactive Containers
+**Learning:** Attaching `onClick` handlers to container `div`s with nested interactive elements (like buttons or links inside a task card) can cause event bubbling bugs and poor accessibility. Users trying to interact with the inner elements may accidentally trigger the container's action.
+**Action:** Always place interactive actions on semantic elements (e.g., `<button>`). If a large hit area is desired for an item (like a task title), convert the entire item structure carefully into valid semantic HTML with distinct button targets or use a full-width/height `<button>` that doesn't contain other interactive nested tags.

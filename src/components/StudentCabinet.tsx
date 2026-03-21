@@ -97,16 +97,28 @@ export const StudentCabinet: React.FC = () => {
                       {tasks.map(task => (
                          <div
                            key={task.id}
+                           role="button"
+                           tabIndex={0}
+                           aria-pressed={task.completed}
                            onClick={() => toggleTask(task.id)}
-                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer ${
+                           onKeyDown={(e) => {
+                             if (e.key === 'Enter' || e.key === ' ') {
+                               e.preventDefault();
+                               toggleTask(task.id);
+                             }
+                           }}
+                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 ${
                               task.completed
                                  ? 'bg-emerald-500/5 border-emerald-500/20 opacity-70 hover:opacity-100'
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                            <div
+                              aria-hidden="true"
+                              className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}
+                            >
                                {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
-                            </button>
+                            </div>
                             <div className="flex-1">
                                <h3 className={`font-medium transition-colors ${task.completed ? 'text-slate-400 line-through' : 'text-slate-200 group-hover:text-white'}`}>
                                   {task.title}
@@ -184,7 +196,8 @@ export const StudentCabinet: React.FC = () => {
                          <button
                             type="submit"
                             disabled={!chatMessage.trim()}
-                            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md"
+                            aria-label="Отправить сообщение"
+                            className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-purple-600 hover:bg-purple-500 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl flex items-center justify-center transition-all disabled:opacity-50 shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purple-400"
                          >
                             <Send size={18} className={chatMessage.trim() ? "translate-x-[-1px] translate-y-[1px]" : ""} />
                          </button>

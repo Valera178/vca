@@ -1,0 +1,3 @@
+## 2024-05-18 - Nested Interactive Elements in Task List
+**Learning:** In `StudentCabinet.tsx`, making the entire task container interactive (`onClick` on the outer `div`) while leaving a nested `<button>` tag inside for the icon creates an accessibility issue. Screen readers and keyboard navigation struggle with nested interactive elements.
+**Action:** When making a large container interactive, apply `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler to the container itself, and replace any inner visual buttons with non-interactive elements (like a `<div>`) using `aria-hidden="true"`. Also, provide a clear `aria-label` and `aria-pressed` to the main container.

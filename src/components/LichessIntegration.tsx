@@ -60,12 +60,14 @@ export const LichessIntegration: React.FC = () => {
                    value={url}
                    onChange={(e) => setUrl(e.target.value)}
                    placeholder="https://lichess.org/..."
+                   aria-label="Ссылка на партию Lichess"
                    className="w-full bg-black/30 border border-white/10 rounded-xl pl-12 pr-4 py-4 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-500/50 transition-all font-medium text-lg shadow-inner"
                  />
                </div>
                <button
                  type="submit"
                  disabled={loading || !url}
+                 aria-label="Анализировать партию"
                  className="bg-emerald-500 hover:bg-emerald-400 disabled:bg-slate-700 disabled:text-slate-400 text-white rounded-xl px-8 py-4 font-semibold transition-all flex items-center justify-center gap-2 shrink-0 shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)] disabled:shadow-none"
                >
                  {loading ? <Loader2 size={24} className="animate-spin" /> : <span>Анализировать</span>}

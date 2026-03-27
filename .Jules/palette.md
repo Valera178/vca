@@ -1,0 +1,5 @@
+## 2024-05-24 - Nested Interactive Elements
+
+**Learning:** Large list items or container components made interactive (`onClick`) often suffer from accessibility issues when visual sub-components (like checkmarks) are implemented as interactive elements (e.g., `<button>`). This creates nested interactive elements, which are problematic for screen readers and keyboard navigation.
+
+**Action:** Preserve the large click target area for UX. Make the container `div` accessible by adding `role="button"`, `tabIndex={0}`, `onKeyDown` (for Enter/Space), and `aria-checked` or similar ARIA attributes. Convert inner visual-only controls to non-interactive elements (e.g., `<div aria-hidden="true">`) to prevent nested interactive element issues. Use `e.stopPropagation()` for both click and keydown events on any genuinely separate interactive child elements (like specific nested buttons) to avoid triggering the parent container's action.

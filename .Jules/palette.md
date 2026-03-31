@@ -1,0 +1,3 @@
+## 2026-03-31 - Interactive Container Accessibility with Nested Buttons
+**Learning:** When making a large container element (like a list item) interactive for better UX, placing a button inside it causes nested interactive element accessibility violations. Users often still want visual button controls inside the container.
+**Action:** Add `role="button"`, `tabIndex={0}`, and keyboard event handlers directly to the container `div`. Convert visual-only inner controls to non-interactive elements (e.g., `<div aria-hidden="true">`). For genuinely separate functional nested buttons, add `e.stopPropagation()` for both `onClick` and `onKeyDown` to prevent conflict with the parent container's events.

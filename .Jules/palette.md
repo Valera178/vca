@@ -1,0 +1,3 @@
+## 2026-04-01 - Interactive Container Accessibility
+**Learning:** When making a visual container element (like a custom task list item) interactive, using `role="button"` and `tabIndex={0}` is essential, but it frequently leads to nested interactive element issues if inner visual-only controls (like icons) are left as `<button>`s. Also, nested actionable buttons (like 'Решить') need explicit event propagation stopping to avoid triggering the parent container's action.
+**Action:** Always verify inner elements when converting a container to an interactive role. Convert visual-only inner buttons to `<div aria-hidden="true">` and remember to use `e.stopPropagation()` on both click and keydown for genuinely separate nested actions.

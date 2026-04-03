@@ -1,0 +1,3 @@
+## 2024-05-18 - [Accessible Interactive Containers]
+**Learning:** When making large container components interactive (like task items in StudentCabinet), placing an interactive element (like a button) inside another interactive element (like an onClick handler on a div without a button role) causes accessibility issues and violates HTML spec.
+**Action:** Convert the outer container to a button role (`role="button"`, `tabIndex={0}`), handle `onKeyDown` for keyboard support. Inner visual toggles should become non-interactive elements (`<div aria-hidden="true">`). Truly separate nested interactive elements (like specific buttons) must use `e.stopPropagation()` for both click and keydown events to prevent triggering the outer container's action.

@@ -1,0 +1,3 @@
+## 2025-02-14 - Large Interactive List Items with Nested Actions
+**Learning:** Complex list items (like task cards) that function as a large clickable area but also contain inner interactive buttons (like a "Solve" action) can cause accessibility and event bubbling issues if the entire card is wrapped in a `<button>`, or if inner elements are native buttons inside a parent button.
+**Action:** Use a `<div>` with `role="button"`, `tabIndex={0}`, `aria-pressed`, and `onKeyDown` (for Space/Enter) for the main container. Make sure any visual-only controls (like checkmarks) are non-interactive (`<div aria-hidden="true">`), and attach `e.stopPropagation()` to both `onClick` and `onKeyDown` of any nested actionable buttons to prevent triggering the parent container's action.

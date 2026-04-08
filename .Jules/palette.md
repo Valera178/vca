@@ -1,0 +1,3 @@
+## 2024-04-08 - Accessible Large Interactive Containers
+**Learning:** When turning a large container into a clickable area, nested visual-only buttons confuse screen readers and keyboard navigation. Using `role="button"`, `tabIndex={0}`, and `aria-pressed` on the container, combined with replacing inner buttons with `aria-hidden="true"` divs, maintains the visual design while vastly improving accessibility.
+**Action:** Always verify if a nested interactive element in a clickable container is functionally separate (requires `e.stopPropagation()`) or purely visual (should be a non-interactive element with `aria-hidden="true"`).

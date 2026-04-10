@@ -1,0 +1,6 @@
+## 2024-05-24 - Accessibility and Keyboard Interaction in Nested Interactive Elements
+**Learning:** When making large container components like tasks or list items interactive for ease of use (e.g. clickable div cards), they need appropriate roles (`role="button"`) and keyboard event handlers (Enter/Space to trigger action) to be accessible. However, if those container elements contain inner interactive elements (like specific feature buttons e.g., "Решить" / Solve button), clicking or activating those inner buttons with keyboard triggers the outer container's action.
+**Action:** When creating large interactive container components, make sure to:
+1. Add `role="button"`, `tabIndex={0}`, and `onKeyDown` handlers for full accessibility.
+2. If there are visually nested controls that just represent the container state (like a checkmark icon), ensure they are non-interactive elements (e.g. `div` with `aria-hidden="true"`) instead of buttons to prevent nested interactive element validation errors.
+3. If there are genuinely separate inner interactive buttons, add `e.stopPropagation()` to both `onClick` and `onKeyDown` handlers on those inner elements so their activation does not trigger the parent container's action.

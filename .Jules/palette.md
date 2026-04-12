@@ -1,0 +1,3 @@
+## 2024-04-12 - Interactive List Item Accessibility
+**Learning:** Large interactive container components (like task toggles) often suffer from nested interactive element issues when they contain visual-only buttons (checkbox icons) and genuine interactive sub-components (like a "Solve" button). This confuses screen readers and breaks keyboard navigation.
+**Action:** Preserve the large click target area by placing `role="button"`, `tabIndex={0}`, `aria-pressed`, and keyboard handlers on the container. Convert visual-only icons from `<button>` to `<div aria-hidden="true">` and use `e.stopPropagation()` on any distinct nested buttons to prevent triggering the container action.

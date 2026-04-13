@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessible Interactive List Items
+**Learning:** Using a structural `<div>` as a clickable list item requires converting it into an accessible control (`role="button"`, `tabIndex={0}`, keyboard handlers). However, nested `<button>` elements (e.g., for visual checkboxes) create invalid HTML and confuse screen readers.
+**Action:** Convert purely visual icons into `<div aria-hidden="true">` when the parent container handles the primary click action. Ensure any genuinely separate nested interactive elements (like specific action buttons) use `e.stopPropagation()` and maintain their own focus states.

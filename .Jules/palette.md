@@ -1,0 +1,3 @@
+## 2024-05-15 - Nested Interactive Elements in List Items
+**Learning:** Expanding the click target for list items (e.g., tasks) can easily result in invalid nested interactive elements if inner visual toggles (like icons in buttons) are not converted. Furthermore, deeply nested actionable buttons (like "Решить") need `e.stopPropagation()` for *both* click and keyboard events to prevent triggering the outer parent container.
+**Action:** When making large container `div`s act as buttons (with `role="button"` and `tabIndex`), always trace and remove/convert any inner semantic `<button>` elements to `<div aria-hidden="true">`, and add full event propagation halting to genuinely distinct nested interactive controls.

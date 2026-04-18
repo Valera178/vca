@@ -1,0 +1,3 @@
+## 2024-04-18 - [Interactive Cards & Nested Controls]
+**Learning:** When making a large container interactive (like a task list item), any inner interactive elements (like an icon button) must be converted to non-interactive elements (e.g., `div aria-hidden="true"`) to avoid nested interactive control violations. Meanwhile, specific secondary actions within the container (like a 'Solve' button) require explicit `stopPropagation()` for both `onClick` and `onKeyDown` events to remain functional and independent.
+**Action:** When designing cards/list items with a whole-area click target and secondary actions, convert visual-only controls to `div`s and explicitly manage event bubbling for the valid nested interactive elements.

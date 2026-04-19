@@ -1,0 +1,3 @@
+## 2024-04-19 - Accessible Interactive List Items
+**Learning:** When making large container components interactive (like a task card `div` that triggers a toggle), nesting a visual `<button>` for the checkbox icon causes screen readers to see nested interactive elements, confusing navigation.
+**Action:** Always add `role="button"`, `tabIndex={0}`, `onKeyDown` and `aria-pressed` to the main interactive container `div`. Convert purely visual child controls (like the checkbox icon) to `<div aria-hidden="true">` to preserve visual affordance while keeping the accessibility tree clean and focused on the container.

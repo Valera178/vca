@@ -1,0 +1,3 @@
+## 2024-05-18 - [Fix nested interactive elements in clickable task list]
+**Learning:** Found an accessibility issue pattern in the app where visual controls within large interactive click target areas (like task list items) were implemented as nested buttons, breaking proper semantics and screen reader functionality.
+**Action:** Always make the large container accessible by adding `role="button"`, `tabIndex={0}`, ARIA attributes, and `onKeyDown` support. Convert inner visual-only controls to non-interactive elements (e.g., `<div aria-hidden="true">`) and ensure any genuinely separate nested interactive buttons have explicit event propagation blocks (`e.stopPropagation()`) for both click and keydown events.

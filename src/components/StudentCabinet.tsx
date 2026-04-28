@@ -98,15 +98,24 @@ export const StudentCabinet: React.FC = () => {
                          <div
                            key={task.id}
                            onClick={() => toggleTask(task.id)}
-                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer ${
+                           role="button"
+                           tabIndex={0}
+                           aria-pressed={task.completed}
+                           onKeyDown={(e) => {
+                             if (e.key === 'Enter' || e.key === ' ') {
+                               e.preventDefault();
+                               toggleTask(task.id);
+                             }
+                           }}
+                           className={`group flex items-start gap-4 p-4 rounded-xl border transition-all cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 ${
                               task.completed
                                  ? 'bg-emerald-500/5 border-emerald-500/20 opacity-70 hover:opacity-100'
                                  : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-emerald-500/30'
                            }`}
                          >
-                            <button className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
+                            <div aria-hidden="true" className={`mt-0.5 shrink-0 transition-colors ${task.completed ? 'text-emerald-500' : 'text-slate-500 group-hover:text-emerald-400'}`}>
                                {task.completed ? <CheckCircle2 size={22} /> : <Circle size={22} />}
-                            </button>
+                            </div>
                             <div className="flex-1">
                                <h3 className={`font-medium transition-colors ${task.completed ? 'text-slate-400 line-through' : 'text-slate-200 group-hover:text-white'}`}>
                                   {task.title}
@@ -114,7 +123,11 @@ export const StudentCabinet: React.FC = () => {
                                {task.fen && !task.completed && (
                                   <div className="mt-3 bg-black/40 rounded-lg p-3 border border-white/5 flex items-center justify-between group-hover:border-emerald-500/20 transition-colors">
                                      <span className="text-xs font-mono text-slate-400 truncate max-w-[150px]">{task.fen}</span>
-                                     <button className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1">
+                                     <button
+                                        className="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-md font-semibold hover:bg-emerald-500 hover:text-white transition-colors flex items-center gap-1"
+                                        onClick={(e) => e.stopPropagation()}
+                                        onKeyDown={(e) => e.stopPropagation()}
+                                     >
                                         Решить
                                         <ChevronRight size={14} />
                                      </button>

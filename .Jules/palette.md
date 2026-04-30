@@ -1,0 +1,3 @@
+## 2026-04-30 - [Large Interactive List Items Accessibility]
+**Learning:** When making large list items or container components interactive, preserve the large click target area for UX. Convert the parent container into an accessible button (using `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler for 'Enter' and 'Space'). To prevent nested interactive element issues which break accessibility rules, convert inner visual-only controls (like checkmarks) to non-interactive elements (e.g., `<div aria-hidden="true">`).
+**Action:** For genuinely separate interactive child elements (like specific nested buttons), ensure `e.stopPropagation()` is applied for both click and keydown events to prevent triggering the parent container's action.

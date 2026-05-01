@@ -1,0 +1,4 @@
+
+## 2024-05-01 - Nested Interactive Elements inside Large Clickable Cards
+**Learning:** When making large container components (like task list items) interactive via `role="button"` and `onClick`/`onKeyDown` for better hit areas, any secondary nested actions (like "Решить" buttons) can accidentally trigger the parent action. This leads to frustrating UX and accessibility conflicts if not handled correctly. Additionally, inner visual-only indicators (like pseudo-checkboxes) should not be interactive `<button>` elements to avoid nested interactive element violations for screen readers.
+**Action:** When implementing large interactive cards with secondary actions, ensure the inner visual controls are non-interactive elements (e.g., `div` with `aria-hidden="true"`). For genuine secondary interactive elements (like specific nested buttons), always add `e.stopPropagation()` for both `onClick` and `onKeyDown` handlers to prevent activating the parent container.

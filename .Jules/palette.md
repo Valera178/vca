@@ -1,0 +1,3 @@
+## 2024-03-24 - Interactive List Item Accessibility
+**Learning:** When making large container `div`s interactive (like task list items), nesting buttons inside them (like a visual checkmark or a sub-action button) causes screen reader confusion and invalid HTML.
+**Action:** Add `role="button"`, `tabIndex={0}`, `aria-pressed`, and keyboard handlers (`onKeyDown` for Enter/Space) to the outer container. Convert visual-only nested interactive elements to `div aria-hidden="true"`. For genuine nested interactive elements (like a "Решить" sub-action), stop event propagation (`e.stopPropagation()`) and ensure they have distinct focus styles.

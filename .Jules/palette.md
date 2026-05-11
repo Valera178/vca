@@ -1,0 +1,3 @@
+## 2024-05-18 - Nested Interactive Elements in List Containers
+**Learning:** Adding `role="button"` and `tabIndex={0}` to list item containers creates accessibility issues if inner visual-only controls remain interactive elements like `<button>`. Using `e.stopPropagation()` on independent child buttons (like the "Решить" button) prevents accidental toggling of the parent container when clicked or triggered via keyboard.
+**Action:** When making containers interactive, convert strictly visual inner controls (like checkmark toggles) to `<div aria-hidden="true">` to prevent nesting, and ensure distinct child actions explicitly handle event propagation for both click and keydown events.

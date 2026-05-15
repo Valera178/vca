@@ -1,0 +1,3 @@
+## 2026-05-15 - Interactive Containers with Nested Controls
+**Learning:** When placing interactive controls (like buttons) inside an interactive container (like a clickable list item or task card), adding an `onClick` to the nested element is not enough to prevent triggering the parent. Users clicking or keyboard-activating the nested button will trigger both actions.
+**Action:** Convert visual-only wrapper controls to `<div aria-hidden="true">`. Make the container `<div role="button" tabIndex={0}>` with an `onKeyDown` handler for Enter/Space, and apply `focus-visible:ring-2` for keyboard accessibility. For any genuinely separate nested buttons (like a 'Solve' link), ensure they include `e.stopPropagation()` on both `onClick` and `onKeyDown` to prevent bubbling.

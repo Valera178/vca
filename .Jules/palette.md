@@ -1,0 +1,3 @@
+## 2024-05-16 - Nested Interactive Elements in Task Lists
+**Learning:** React elements designed as large click targets (like task items) often erroneously wrap smaller interactive controls (`<button>`) to represent visual state (e.g., a checkmark), leading to nested interactive element a11y violations. Also, child buttons within these clickable containers ("Решить") trigger the parent toggle unless event propagation is explicitly stopped.
+**Action:** When making containers interactive, apply `role="button"`, `tabIndex`, and `aria-pressed`, convert internal purely-visual toggles to `div aria-hidden="true"`, and use `e.stopPropagation()` for both `onClick` and `onKeyDown` on legitimately independent nested buttons to maintain an accessible, non-conflicting DOM structure.

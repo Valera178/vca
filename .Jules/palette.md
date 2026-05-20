@@ -1,0 +1,3 @@
+## 2024-05-20 - Interactive List Item Accessibility
+**Learning:** Making large list item containers interactive (for UX) while containing other interactive elements (like specific buttons) requires careful orchestration to avoid invalid HTML (`<button>` inside `<button>`) or screen reader confusion. Converting inner visual icons to `aria-hidden="true"` and moving the interaction to the parent container is cleaner, while any genuinely separate nested buttons must stop event propagation for both `click` and `keydown` events.
+**Action:** When implementing clickable row/card components, make the container accessible (`role="button"`, `tabIndex`, `onKeyDown`) and prevent propagation on isolated nested controls.

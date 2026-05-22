@@ -1,0 +1,3 @@
+## 2024-05-22 - Accessible Interactive Task Lists
+**Learning:** When making large container items interactive in React, nested buttons (like visual toggles) cause a11y issues for screen readers. The main container must be the primary accessible button (`role="button"`, `tabIndex={0}`, `aria-pressed`, keyboard handlers), and purely visual nested controls should be converted to non-interactive elements (`div aria-hidden="true"`). Any genuinely distinct interactive children (like a specific link or action button) need `e.stopPropagation()` on both click and keydown to avoid triggering the parent.
+**Action:** Applied this pattern to the task list in StudentCabinet.tsx, making the entire task row accessible while preventing nested interaction bugs.

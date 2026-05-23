@@ -1,0 +1,3 @@
+## 2024-05-23 - Interactive List Items with Nested Actions
+**Learning:** Large list items made interactive for better UX often cause nested interactive element issues (e.g., placing a button inside a clickable div/button). This confuses screen readers and breaks keyboard navigation if not handled properly.
+**Action:** When a container needs to be clickable: 1) Convert it to a proper button (`role="button"`, `tabIndex={0}`, `onKeyDown`). 2) Convert inner visual-only controls (like a checkmark icon) to non-interactive elements (`<div aria-hidden="true">`). 3) For genuinely separate nested actions (like a "Solve" button), apply `e.stopPropagation()` on both `onClick` and `onKeyDown` to prevent triggering the parent container action.

@@ -1,0 +1,3 @@
+## 2024-05-25 - Task list interactive elements
+**Learning:** Adding `role="button"` and `tabIndex={0}` to complex task list items with internal buttons requires careful nested event management. Stopping propagation on nested interactive elements works as an acceptable practical fallback when rebuilding the entire DOM tree isn't viable under constraints.
+**Action:** When adding keyboard navigation to large interactive list items containing secondary actions, add `e.stopPropagation()` for both `onClick` and `onKeyDown` on the inner elements to prevent unintended toggling of the parent container.

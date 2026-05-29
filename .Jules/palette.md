@@ -1,0 +1,4 @@
+
+## 2025-05-29 - Make task items keyboard accessible
+**Learning:** Large list items or container components made interactive should have standard keyboard accessibility properties like `role="button"`, `tabIndex={0}`, and `onKeyDown` handlers for Enter/Space keys. When making a container an interactive element, any purely visual nested components (like a custom checkbox or icon button) must be changed to non-interactive elements (e.g. `<div aria-hidden="true">`) to prevent nested interactive element accessibility issues, and genuine nested interactive elements (like specific nested buttons) must halt event propagation using `e.stopPropagation()` for both click and keydown events.
+**Action:** When implementing clickable task items or list entries, always establish keyboard support on the main container div with proper ARIA roles and key handlers. Ensure inner decorative interactive elements are removed and functional inner elements halt event bubbling.

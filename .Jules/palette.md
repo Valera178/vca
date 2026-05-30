@@ -1,0 +1,3 @@
+## 2026-05-30 - Accessible Interactive List Items
+**Learning:** Interactive list items with nested buttons cause issues for screen readers. Using a `div` with `role="button"`, `tabIndex={0}`, `onKeyDown`, and ARIA attributes for the outer container, and hiding inner decorative buttons with `aria-hidden="true"` provides a better UX. For genuine functional nested buttons, `e.stopPropagation()` must be used for both `onClick` and `onKeyDown` events.
+**Action:** Use this pattern for list items with click actions and nested controls to ensure keyboard and screen reader accessibility while avoiding nested interactive element conflicts.

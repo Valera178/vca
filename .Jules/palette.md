@@ -1,0 +1,3 @@
+## 2024-03-24 - Accessible Task List Container Pattern
+**Learning:** When turning a large container `div` into an accessible button (like a task list item), any visual-only inner "checkboxes" previously implemented as `<button>`s must be converted to non-interactive elements (e.g., `<div aria-hidden="true">`) to prevent screen readers from incorrectly announcing nested interactive elements, and valid nested interactive elements (like a "Solve" button) must have `e.stopPropagation()` on both `onClick` and `onKeyDown`.
+**Action:** Always audit inner visual controls when adding `role="button"` to a parent container, converting decorative elements to static ones and explicitly isolating genuine nested interactions.

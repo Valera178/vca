@@ -1,0 +1,3 @@
+## 2026-06-06 - Nested Interactive Elements in List Items
+**Learning:** Making large container components (like task lists) interactive for a larger click target area often creates accessibility issues if inner visual-only controls (like checkboxes) remain as buttons, causing nested interactive elements. Also, genuine inner buttons (like "Solve" actions) need `e.stopPropagation()` for both `onClick` and `onKeyDown` to avoid triggering the parent container.
+**Action:** When making containers clickable, use `role="button"`, `tabIndex={0}`, `aria-pressed`, and `onKeyDown`. Convert inner visual-only controls to non-interactive elements (e.g., `<div aria-hidden="true">`). Add explicit event propagation stopping to genuinely nested buttons.

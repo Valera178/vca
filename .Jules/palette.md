@@ -1,0 +1,3 @@
+## 2025-06-08 - [Interactive Custom List Items Accessibility]
+**Learning:** When making large container elements (like custom list items or cards) clickable for better UX, they fail accessibility standards for keyboard users. Nesting a real `<button>` inside them causes invalid HTML and event bubbling issues.
+**Action:** Always add `role="button"`, `tabIndex={0}`, an `onKeyDown` handler for Space/Enter, and appropriate focus-visible utility classes to the container. Any inner visual "checkboxes" or controls should be non-interactive (`div aria-hidden="true"`) to prevent nested interactive element conflicts.

@@ -1,0 +1,3 @@
+## 2024-06-09 - Accessible Custom Toggle Lists
+**Learning:** Large interactive container elements (like task lists) that behave as toggles often suffer from poor keyboard accessibility and screen reader support when they wrap internal, visual-only buttons. Using `role="button"`, `aria-pressed`, and adding space/enter keydown support to the container while removing semantics from internal visual markers solves this without compromising the large click target UX.
+**Action:** Always verify custom list item toggles have proper keyboard event handlers, `tabIndex={0}`, and use `aria-pressed` rather than just relying on visual state changes. Prevent event bubbling from any genuinely separate nested interactive elements (like specific action buttons).

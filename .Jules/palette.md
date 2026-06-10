@@ -1,0 +1,3 @@
+## 2024-06-10 - Task List Item Accessibility
+**Learning:** When making large container items interactive (like the task toggles in StudentCabinet), wrapping visual-only controls (like a checkmark icon) in an inner `<button>` creates invalid nested interactive elements. Also, nested functional buttons (like the "Решить" button) must have explicit `e.stopPropagation()` for both `onClick` and `onKeyDown` to prevent the outer container's events from firing.
+**Action:** Convert purely visual toggle indicators inside interactive containers to `div aria-hidden="true"`, apply the `button` role to the container itself with `aria-pressed`, and ensure nested actionable buttons stop event propagation.

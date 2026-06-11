@@ -1,0 +1,3 @@
+## 2024-05-24 - Interactive Lists with Nested Buttons
+**Learning:** Making entire list items interactive (like task rows) provides a large click target but causes nested interactive element issues if inner visual controls (like checkboxes) remain buttons, or if independent actions (like "Solve" buttons) don't stop propagation.
+**Action:** When making containers interactive, apply `role="button"`, `tabIndex={0}`, and `onKeyDown` (Enter/Space) to the container. Convert inner visual-only controls (like checkboxes) to `<div aria-hidden="true">`. For genuinely separate interactive child elements (like "Solve"), use `e.stopPropagation()` on both click and keydown events.

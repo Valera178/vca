@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessible Interactive Lists
+**Learning:** Making entire list items interactive (like task items) requires adding `role="button"` and `tabIndex={0}` to the container, and crucially, changing inner visual controls (like checkmarks) to non-interactive `aria-hidden` elements to prevent nested interactive element accessibility issues.
+**Action:** Always convert inner visual-only controls to non-interactive elements when the parent container handles the interaction, and remember to use `stopPropagation` on genuinely separate nested interactive elements (like specific action buttons).

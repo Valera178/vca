@@ -1,0 +1,3 @@
+## 2024-06-14 - Accessible Interactive Container Lists
+**Learning:** This app uses large `div` containers as clickable task items (e.g., in StudentCabinet) which lack keyboard navigability, use `<button>` for purely decorative checkmarks causing nested element issues, and have actual functional nested buttons ("Решить") that trigger the parent's click events.
+**Action:** Always make container `div`s accessible with `role="button"`, `tabIndex={0}`, `onKeyDown` (Enter/Space), `aria-pressed`, and `focus-visible` styles. Convert decorative buttons to `<div aria-hidden="true">`. Add `e.stopPropagation()` for both `onClick` and `onKeyDown` on actual nested interactive elements to prevent unintended parent triggers.

@@ -1,0 +1,3 @@
+## 2026-06-15 - Accessible Interactive Task List
+**Learning:** Large clickable areas need explicit keyboard interactions. Nesting buttons inside clickable divs creates nested interactive element issues for screen readers. Resolving this requires shifting interaction state and ARIA properties to the parent element and converting child visuals to non-interactive semantics (aria-hidden).
+**Action:** Applied role='button', tabIndex={0}, aria-pressed, and onKeyDown event to the parent task container in StudentCabinet while refactoring nested buttons to aria-hidden divs. Separately verified 'Решить' nested button explicitly handles event propagation.

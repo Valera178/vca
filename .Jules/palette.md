@@ -1,0 +1,3 @@
+## 2025-02-24 - Interactive List Items and Nested Controls
+**Learning:** When making a large container interactive (like a task list item), wrapping it in an accessible `div` with `role="button"` and `tabIndex={0}` is good, but inner visual controls must be changed to non-interactive elements (like `div aria-hidden="true"`) to avoid nested interactive elements that confuse screen readers. Any genuinely separate nested action buttons (like "Решить") must stop event propagation for both clicks and keydowns.
+**Action:** Always verify if a visual control inside an interactive container needs to be a real button or just a visual indicator. Add `stopPropagation` for both `onClick` and `onKeyDown` to any required nested interactive elements.

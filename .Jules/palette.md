@@ -1,0 +1,3 @@
+## 2024-06-19 - Accessible Task List Toggle
+**Learning:** When making large container components like list items interactive to preserve a large UX click target area, adding `role="button"` and `tabIndex={0}` is necessary. However, if the container has nested interactive elements (like specific action buttons), it causes a11y issues.
+**Action:** Convert purely visual inner interactive controls (like toggle checkboxes/buttons) to non-interactive elements (e.g., `<div aria-hidden="true">`). For genuinely separate interactive child elements, use `e.stopPropagation()` for both click and keydown events. Also, always use `aria-pressed` for toggle states.

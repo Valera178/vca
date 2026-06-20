@@ -1,0 +1,3 @@
+## 2025-05-01 - Interactive Task Lists & Nested Controls
+**Learning:** Found an accessibility issue pattern in `StudentCabinet.tsx` where an entire visual row acts as a toggle, but isn't marked as a button for screen readers and lacks keyboard navigation. Additionally, nesting an interactive button inside this visually clickable row creates event bubbling risks when users try to interact with the inner element.
+**Action:** Always wrap large interactive visual containers with `role="button"`, `tabIndex={0}`, and `onKeyDown` handlers. Convert inner visual-only controls (like checkboxes/icons) to `div aria-hidden="true"`, and rigorously apply `e.stopPropagation()` to genuine nested interactive elements to prevent parent trigger conflicts.

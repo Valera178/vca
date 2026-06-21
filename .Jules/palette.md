@@ -1,0 +1,3 @@
+## 2024-06-21 - Accessible Large Interactive Targets
+**Learning:** When turning a large container (like a task card) into a clickable area, nested `<button>` elements for pure visual state (like a checkbox icon) cause invalid HTML and screen reader confusion. Additionally, valid nested interactive elements (like a secondary action button) need event stopping to prevent parent triggers.
+**Action:** Elevate the interactive semantics to the parent container (`role="button"`, `tabIndex={0}`, `onKeyDown`), convert decorative inner elements to `div aria-hidden="true"`, and use `e.stopPropagation()` on independent nested actions.

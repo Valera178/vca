@@ -1,0 +1,3 @@
+## 2024-06-23 - Interactive Container Element Accessibility
+**Learning:** In the student cabinet, task list items are custom interactive containers. Because they act as a button but are built with a `div` wrapped around other elements (like inner visual-only controls and a nested actual button), they lack built-in keyboard accessibility and cause nested interactive element issues.
+**Action:** Added `role="button"`, `tabIndex={0}`, `aria-pressed`, and `onKeyDown` to the container `div`. Changed the inner visual-only `<button>` to a non-interactive `<div aria-hidden="true">`. Used `e.stopPropagation()` on nested buttons to prevent triggering the parent. Always use this pattern for large interactive list items.

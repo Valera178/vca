@@ -1,0 +1,3 @@
+## 2024-06-24 - Preserving large interactive areas for complex list items
+**Learning:** Making large container components interactive requires converting inner visual controls (like checkmark icons) to non-interactive elements (`aria-hidden="true"`) to prevent nested button issues, while explicitly stopping event propagation on truly independent inner actions (like the nested button on line 117).
+**Action:** When implementing custom toggleable list items, apply `role="button"`, `tabIndex={0}`, and `aria-pressed` to the main container, strip roles from decorative inner toggles, and use `e.stopPropagation()` on secondary nested actions.

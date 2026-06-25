@@ -1,0 +1,3 @@
+## 2023-11-20 - Accessible Interactive List Items
+**Learning:** When creating large click targets for list items (like tasks), nesting buttons inside clickable divs causes screen reader and keyboard navigation issues.
+**Action:** Apply `role="button"`, `tabIndex={0}`, and keyboard handlers to the main wrapper, use `aria-pressed` for state, convert inner visual cues to `aria-hidden="true" divs`, and use `stopPropagation()` on any distinct nested interactive elements.

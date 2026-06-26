@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { LiquidCard } from './LiquidCard';
-import { ChevronDown, Send } from 'lucide-react';
+import { ChevronDown, Send, CheckCircle2 } from 'lucide-react';
 
 interface Program {
   id: string;
@@ -37,6 +37,7 @@ const programs: Program[] = [
 
 export const Syllabus: React.FC = () => {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [submittedId, setSubmittedId] = useState<string | null>(null);
 
   const toggleExpand = (id: string) => {
     setExpandedId(expandedId === id ? null : id);
@@ -58,8 +59,17 @@ export const Syllabus: React.FC = () => {
                  <div className="absolute inset-0 bg-gradient-to-r opacity-20 pointer-events-none transition-opacity duration-300 group-hover:opacity-40" />
 
                  <div
-                   className="p-6 md:p-8 cursor-pointer flex items-center justify-between relative z-10"
+                   role="button"
+                   tabIndex={0}
+                   aria-expanded={isExpanded}
+                   className="p-6 md:p-8 cursor-pointer flex items-center justify-between relative z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 rounded-2xl"
                    onClick={() => toggleExpand(program.id)}
+                   onKeyDown={(e) => {
+                     if (e.key === 'Enter' || e.key === ' ') {
+                       e.preventDefault();
+                       toggleExpand(program.id);
+                     }
+                   }}
                  >
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">{program.title}</h3>
@@ -96,27 +106,38 @@ export const Syllabus: React.FC = () => {
 
                            <div className="mt-8 pt-6 border-t border-white/10">
                               <h4 className="text-lg font-semibold text-white mb-4">Записаться на этот курс</h4>
-                              <form className="flex flex-col md:flex-row gap-4" onSubmit={(e) => { e.preventDefault(); alert('Заявка отправлена!'); }}>
-                                 <input
-                                   type="text"
-                                   placeholder="Имя"
-                                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
-                                   required
-                                 />
-                                 <input
-                                   type="text"
-                                   placeholder="Telegram / Телефон"
-                                   className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
-                                   required
-                                 />
-                                 <button
-                                   type="submit"
-                                   className="bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl px-6 py-3 font-semibold transition-all flex items-center justify-center gap-2 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
-                                 >
-                                   <span>Отправить</span>
-                                   <Send size={18} />
-                                 </button>
-                              </form>
+                              {submittedId === program.id ? (
+                                <motion.div
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  className="flex items-center gap-3 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400"
+                                >
+                                  <CheckCircle2 size={24} className="shrink-0" />
+                                  <p className="font-medium">Заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.</p>
+                                </motion.div>
+                              ) : (
+                                <form className="flex flex-col md:flex-row gap-4" onSubmit={(e) => { e.preventDefault(); setSubmittedId(program.id); }}>
+                                   <input
+                                     type="text"
+                                     placeholder="Имя"
+                                     className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                                     required
+                                   />
+                                   <input
+                                     type="text"
+                                     placeholder="Telegram / Телефон"
+                                     className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
+                                     required
+                                   />
+                                   <button
+                                     type="submit"
+                                     className="bg-emerald-500 hover:bg-emerald-400 text-white rounded-xl px-6 py-3 font-semibold transition-all flex items-center justify-center gap-2 shrink-0 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]"
+                                   >
+                                     <span>Отправить</span>
+                                     <Send size={18} />
+                                   </button>
+                                </form>
+                              )}
                            </div>
                         </div>
                      </motion.div>

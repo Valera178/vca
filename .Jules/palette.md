@@ -1,0 +1,3 @@
+## 2025-03-05 - Accessible Interactive List Items with Nested Actions
+**Learning:** When adding keyboard support and `role="button"` to large interactive list items (like task toggles), screen readers can be confused by nested interactive elements (like purely visual checkmark buttons). Furthermore, genuinely interactive nested actions (like "Решить" buttons) can trigger parent click events when activated via keyboard or mouse.
+**Action:** Add `role="button"`, `tabIndex={0}`, `aria-pressed`, and `onKeyDown` to the outer container. Convert visual-only nested buttons to `div aria-hidden="true"`. Add `e.stopPropagation()` to both `onClick` and `onKeyDown` on any genuinely separate interactive nested buttons to prevent event bubbling.

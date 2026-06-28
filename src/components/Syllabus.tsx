@@ -58,13 +58,24 @@ export const Syllabus: React.FC = () => {
                  <div className="absolute inset-0 bg-gradient-to-r opacity-20 pointer-events-none transition-opacity duration-300 group-hover:opacity-40" />
 
                  <div
-                   className="p-6 md:p-8 cursor-pointer flex items-center justify-between relative z-10"
+                   role="button"
+                   tabIndex={0}
+                   aria-expanded={isExpanded}
+                   aria-controls={`content-${program.id}`}
+                   className="p-6 md:p-8 cursor-pointer flex items-center justify-between relative z-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
                    onClick={() => toggleExpand(program.id)}
+                   onKeyDown={(e) => {
+                     if (e.key === 'Enter' || e.key === ' ') {
+                       e.preventDefault();
+                       toggleExpand(program.id);
+                     }
+                   }}
                  >
                     <div>
                       <h3 className="text-2xl font-bold text-white mb-1 group-hover:text-emerald-400 transition-colors">{program.title}</h3>
                     </div>
                     <motion.div
+                      aria-hidden="true"
                       animate={{ rotate: isExpanded ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
                       className="text-slate-400"
@@ -76,6 +87,7 @@ export const Syllabus: React.FC = () => {
                  <AnimatePresence>
                    {isExpanded && (
                      <motion.div
+                       id={`content-${program.id}`}
                        initial={{ height: 0, opacity: 0 }}
                        animate={{ height: 'auto', opacity: 1 }}
                        exit={{ height: 0, opacity: 0 }}

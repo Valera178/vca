@@ -1,0 +1,3 @@
+## 2025-02-27 - Playwright focus-visible verification
+**Learning:** When using Playwright to test `focus-visible` styling, using the `.focus()` method on an element often does not trigger the browser's heuristic for `focus-visible` because it does not simulate true keyboard navigation. This can lead to screenshots lacking the expected focus ring.
+**Action:** When visual verification of keyboard focus rings is necessary, you must use native keyboard simulation like `page.keyboard.press("Tab")` to navigate to the element, rather than invoking `.focus()` directly on the locator. If tab order is too complex to simulate reliably, you can temporarily manipulate the tabIndex of nearby elements via `page.evaluate()` to simplify the tab sequence for the test.

@@ -1,0 +1,3 @@
+## 2024-05-15 - Making large container items interactive
+**Learning:** When making large list items (like tasks) interactive with an `onClick` handler, they must be fully keyboard accessible to support users who cannot use a mouse. Nested interactive elements (like a button inside a clickable div) create issues for screen readers.
+**Action:** Added `role="button"`, `aria-pressed`, `tabIndex={0}`, and an `onKeyDown` handler (for Space and Enter keys) to the container `div`. Converted the visual-only inner checkbox `<button>` to a `<div aria-hidden="true">` to prevent nested interactive elements. Used `e.stopPropagation()` on genuinely interactive inner child elements (like the "Решить" button).

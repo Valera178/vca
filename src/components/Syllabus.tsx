@@ -100,12 +100,14 @@ export const Syllabus: React.FC = () => {
                                  <input
                                    type="text"
                                    placeholder="Имя"
+                                   aria-label="Ваше имя"
                                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                                    required
                                  />
                                  <input
                                    type="text"
                                    placeholder="Telegram / Телефон"
+                                   aria-label="Ваш Telegram или телефон"
                                    className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder:text-slate-500 focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all"
                                    required
                                  />

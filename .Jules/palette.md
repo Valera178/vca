@@ -1,0 +1,3 @@
+## 2024-07-03 - Accessible Complex List Items
+**Learning:** When making large container components interactive (like task rows), adding `onClick` isn't enough for accessibility. Nested interactive elements (like the "Решить" button) inside an interactive container cause event bubbling issues and invalid HTML structure if visual-only controls use `<button>`.
+**Action:** Add `role="button"`, `tabIndex={0}`, `aria-pressed`, and keyboard handlers (`onKeyDown`) to the main container. Convert visual-only inner toggles to `<div aria-hidden="true">`. Ensure genuine nested buttons call `e.stopPropagation()` on both click and keydown events to prevent triggering the parent.

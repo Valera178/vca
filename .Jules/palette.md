@@ -1,0 +1,3 @@
+## 2024-07-04 - Accessible Interactive List Items
+**Learning:** When creating large clickable list items (like task cards), wrapping interactive child elements (like 'solve' buttons) inside a clickable parent div creates nested interactive elements that fail accessibility standards and can trigger unwanted parent actions.
+**Action:** Convert the parent container into a proper accessible button using role="button", tabIndex={0}, and onKeyDown, replace visual-only child buttons (like checkmarks) with aria-hidden divs, and explicitly add e.stopPropagation() to both click and keydown events for genuinely interactive nested actions.

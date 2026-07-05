@@ -1,0 +1,3 @@
+## 2024-05-24 - Accessible Task List Container
+**Learning:** Wrapping complex interactive items (like a task row with its own internal buttons) in a semantic `<button>` violates HTML spec. Instead, preserving the `div` as a container, assigning `role="button"`, `tabIndex={0}`, and an `onKeyDown` handler, while using `e.stopPropagation()` on nested actual buttons, creates a highly accessible, large click target area without violating DOM nesting rules.
+**Action:** Apply this container-level `role="button"` pattern with `stopPropagation` on inner interactive elements when building complex list items or cards that need to be fully clickable.

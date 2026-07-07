@@ -1,0 +1,3 @@
+## 2024-07-07 - Accessible Interactive Lists and Forms
+**Learning:** When turning a `div` into an interactive list item, nested buttons (like a visual toggle icon) must be converted to non-interactive elements (`div aria-hidden="true"`) to prevent nested interactive element a11y issues. Conversely, genuinely separate interactive children (like a "Solve" button) must have event propagation stopped (`e.stopPropagation()`). Icon-only form submit buttons always need an `aria-label` for screen readers.
+**Action:** Always verify complex interactive list items for nested focusable elements. Apply `role="button"`, `tabIndex={0}`, `onKeyDown`, and `aria-pressed` to the parent container while making visual-only children inert. Apply `aria-label` to icon-only buttons.
